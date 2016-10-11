@@ -1,0 +1,11 @@
+== README
+
+Keyword Density Assignment
+
+Given an url, this single-page app should display a pie chart detailing the most frequently appearing words on the requested site. 
+
+--Nokogiri
+	http://www.nokogiri.org/tutorials/
+--HighCharts
+   http://www.highcharts.com/docs/
+   
