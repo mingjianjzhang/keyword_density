@@ -7,50 +7,18 @@
 	</div>
 	<button class="btn waves-effect waves-light center-align black lighten-3" type="submit">Fetch</button>
 </form>
+<button id="change" class="btn waves-effect waves-light center-align">Change Data</button>
 </div>
 <div class="container" style="margin-top: 3.5em">
 	<div id="sampleChart" style="width: 80%; height:400px; background-color: red; margin: 0 auto"></div>
 </div>
 <script>
-$(function () { 
-    var myChart = Highcharts.chart('sampleChart', {
-        chart: {
-            type: 'pie'
-        },
-        title: {
-            text: "Frequently Appearing Words In DFW's '9/11: The View From the Midwest'"
-        },
-        plotOptions: {
-        	allowPointSelect: true,
-        	cursor: 'pointer',
-        	dataLabels: {
-        		enabled: true,
-        		format: '<strong>{point.name}</strong>: {point.percentage:.1f} %',
-        		style: {
-        			color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-        		}
-        	}
-        },
-        series: [{
-            name: 'Frequency',
-            data: [{
-            	name: 'Terror',
-            	y: 9.8
-            } , {
-            	name: 'John',
-            	y: 8.5
-        	}, {
-        		name: 'Sadness',
-        		y: 5.5
-        	}, {
-        		name: 'Men',
-        		y: 20.5
-        	}, {
-        		name: 'Other',
-        		y: 55.7 
-        	}]
-        }]
-    });
-});
-
+$(document).ready(function(){ 
+	$('#change').click(function() {
+		var chart = $('#sampleChart').highcharts();
+		$.post('/search', function(res) {
+			chart.series[0].setData(res);
+		}, "json");
+	})
+})
 </script>
